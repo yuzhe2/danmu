@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        width: 1000px;
+        height: 250px;
+        background-image: url(./img/curtain.jpg);
+        background-size: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 用来展示弹幕的容器 -->
+    <div class="container"></div>
+
+    <template id="danmuWrapTpl">
+      <style>
+        .wrap {
+          display: flex;
+          align-items: center;
+          position: absolute;
+          height: 36px;
+          background-color: #fff;
+          padding: 0px 4px;
+          border-radius: 18px;
+          cursor: pointer;
+          z-index: 1000;
+          transition: box-shadow 0.3s ease 0s;
+        }
+
+        .portrait {
+          width: 28px;
+          height: 28px;
+          box-shadow: 0px 0px 4px rgb(0 0 0 / 30%);
+          border-radius: 50%;
+          overflow: hidden;
+        }
+
+        .img {
+          width: 28px;
+        }
+
+        .message {
+          margin: 0px 12px;
+          font-weight: bold;
+        }
+      </style>
+
+      <div class="wrap">
+        <span class="portrait"></span>
+        <span class="message"></span>
+      </div>
+    </template>
+    
+    <script src="./script/utils.js"></script>
+    <script src="./script/template.js"></script>
+    <script src="./script/danmu.js"></script>
+    <script>
+      let wrap = new Wrap({
+        el: '.container',
+        pool: [
+          {
+            message: '恐鹈鴃之先鸣兮，使夫百草为之不芳。'
+          },
+          {
+            message: '何琼佩之偃蹇兮，众薆然而蔽之。'
+          },
+          {
+            message: '兰芷变而不芳兮，荃蕙化而为茅。'
+          }
+        ]
+      })
+      setTimeout(() => {
+        wrap.pushPool({
+          message: '你真牛逼'
+        })
+      }, 3000)
+    </script>
+  </body>
+</html>
